@@ -1,0 +1,15 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="container_size">160dp</dimen>
+
+    <!-- LG G watch R skin -->
+    <dimen name="skin_width">250dp</dimen>
+    <dimen name="skin_height">320dp</dimen>
+    <dimen name="skin_margin_left">43dp</dimen>
+    <dimen name="skin_margin_top">79dp</dimen>
+    <integer name="skin_PPI">246</integer>
+
+</resources>
