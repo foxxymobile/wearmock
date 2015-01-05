@@ -86,6 +86,7 @@ public class WearMockLayout extends FrameLayout {
         int skinLeft = containerLeft-skinMarginLeft;
         int skinTop = containerTop-skinMarginTop;
 
+        // Draw skin above the container
         faceDrawable.setBounds(skinLeft,skinTop,skinLeft+skinWidth,skinTop+skinHeight);
         faceDrawable.draw(canvas);
     }
