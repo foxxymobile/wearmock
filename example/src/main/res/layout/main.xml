@@ -14,10 +14,21 @@
      limitations under the License.
 -->
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Name of the wearable app [CHAR LIMIT=NONE] -->
-    <string name="app_name">Flashlight</string>
-    <string name="msg1">Touch to turn on/off</string>
-    <string name="msg2">Swipe left for party!</string>
+<com.foxxymobile.wearmock.WearMockLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:keepScreenOn="true"
+        />
 
-</resources>
+
+</com.foxxymobile.wearmock.WearMockLayout>
+

@@ -5,8 +5,3 @@
 /.idea
 .DS_Store
 /build
-/gradle
-/gradlew
-/*.bat
-/example/proguard-rules.pro
-/library/proguard-rules.pro

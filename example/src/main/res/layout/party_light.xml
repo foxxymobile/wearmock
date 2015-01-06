@@ -14,10 +14,8 @@
      limitations under the License.
 -->
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Name of the wearable app [CHAR LIMIT=NONE] -->
-    <string name="app_name">Flashlight</string>
-    <string name="msg1">Touch to turn on/off</string>
-    <string name="msg2">Swipe left for party!</string>
-
-</resources>
+<com.example.android.wearable.flashlight.PartyLightView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    />
