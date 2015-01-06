@@ -16,9 +16,12 @@
 
 <com.foxxymobile.wearmock.WearMockLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/wearmock_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    app:skin="LG_G_Watch_R"
     >
     
     <android.support.v4.view.ViewPager

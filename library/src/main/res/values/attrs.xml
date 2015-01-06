@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WearMockLayout">
+        <attr name="skin" format="enum">
+            <enum name="LG_G_Watch_R" value="0"/>
+            <enum name="Moto_360" value="1"/>
+        </attr>
+        
+    </declare-styleable>
+    
+    
+</resources>

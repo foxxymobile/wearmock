@@ -25,8 +25,13 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.foxxymobile.wearmock.WearMockLayout;
 
 import java.util.ArrayList;
 
@@ -35,6 +40,7 @@ import java.util.ArrayList;
  */
 public class MainActivity extends Activity {
 
+    private WearMockLayout wearMockLayout;
     private ViewPager mViewPager;
 
     @Override
@@ -43,6 +49,8 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.main);
         mViewPager = (ViewPager) findViewById(R.id.pager);
+        wearMockLayout = (WearMockLayout) findViewById(R.id.wearmock_layout);
+        
         final LightFragmentAdapter adapter = new LightFragmentAdapter(getFragmentManager());
         adapter.addFragment(new WhiteLightFragment());
         final PartyLightFragment partyFragment = new PartyLightFragment();
@@ -68,6 +76,27 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.skin_lgwr:
+                wearMockLayout.setSkin(0);
+                return true;
+            case R.id.skin_moto360:
+                wearMockLayout.setSkin(1);
+                return true;
+        }
+        return false;
+    }
+
 
     static class LightFragmentAdapter extends FragmentPagerAdapter {
         private ArrayList<Fragment> mFragments;

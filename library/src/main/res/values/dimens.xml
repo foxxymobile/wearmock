@@ -3,13 +3,22 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="container_size">160dp</dimen>
 
     <!-- LG G watch R skin -->
-    <dimen name="skin_width">250dp</dimen>
-    <dimen name="skin_height">320dp</dimen>
-    <dimen name="skin_margin_left">43dp</dimen>
-    <dimen name="skin_margin_top">79dp</dimen>
-    <integer name="skin_PPI">246</integer>
+    <dimen name="lgwr_container_size">160dp</dimen>
+    <dimen name="lgwr_skin_width">250dp</dimen>
+    <dimen name="lgwr_skin_height">320dp</dimen>
+    <dimen name="lgwr_skin_margin_left">43dp</dimen>
+    <dimen name="lgwr_skin_margin_top">79dp</dimen>
+    <integer name="lgwr_skin_PPI">246</integer>
+
+
+    <!-- Moto360 skin -->
+    <dimen name="moto360_container_size">160dp</dimen>
+    <dimen name="moto360_skin_width">205dp</dimen>
+    <dimen name="moto360_skin_height">298dp</dimen>
+    <dimen name="moto360_skin_margin_left">20dp</dimen>
+    <dimen name="moto360_skin_margin_top">71dp</dimen>
+    <integer name="moto360_skin_PPI">213</integer>
 
 </resources>
