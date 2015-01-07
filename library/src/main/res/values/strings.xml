@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Library</string>
 
-    <string-array name="skins_array">
-        <item>lgwr</item>
-        <item>moto360</item>
-    </string-array>
+    <string name="skin_lgwr_label">LG G Watch R</string>
+    <string name="skin_moto360_label">Moto 360</string>
+    <string name="skin_gear_label">Samsung Gear Live</string>
+    <string name="skin_zenwatch_label">Asus Zen Watch</string>
+    <string name="skin_sony_label">Sony Smartwatch 3</string>
+    <string name="skin_lgw_label">LG G Watch</string>
 
     
 </resources>

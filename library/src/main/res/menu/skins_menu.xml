@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/skin_lgwr" android:title="@string/skin_lgwr_label"></item>
+    <item android:id="@+id/skin_moto360" android:title="@string/skin_moto360_label"></item>
+    <item android:id="@+id/skin_gear" android:title="@string/skin_gear_label"></item>
+    <item android:id="@+id/skin_zenwatch" android:title="@string/skin_zenwatch_label"></item>
+    <item android:id="@+id/skin_sony" android:title="@string/skin_sony_label"></item>
+    <item android:id="@+id/skin_lgw" android:title="@string/skin_lgw_label"></item>
+</menu>

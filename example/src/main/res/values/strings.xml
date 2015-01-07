@@ -20,7 +20,4 @@
     <string name="msg1">Touch to turn on/off</string>
     <string name="msg2">Swipe left for party!</string>
 
-    <string name="skin_lgwr_label">LG G Watch R</string>
-    <string name="skin_moto360_label">Moto 360</string>
-
 </resources>

@@ -21,4 +21,36 @@
     <dimen name="moto360_skin_margin_top">71dp</dimen>
     <integer name="moto360_skin_PPI">213</integer>
 
+    <!-- Samsung gear live skin -->
+    <dimen name="gear_container_size">160dp</dimen>
+    <dimen name="gear_skin_width">305dp</dimen>
+    <dimen name="gear_skin_height">415dp</dimen>
+    <dimen name="gear_skin_margin_left">73dp</dimen>
+    <dimen name="gear_skin_margin_top">126dp</dimen>
+    <integer name="gear_skin_PPI">278</integer>
+
+    <!-- Asus zen watch skin -->
+    <dimen name="zenwatch_container_size">160dp</dimen>
+    <dimen name="zenwatch_skin_width">250dp</dimen>
+    <dimen name="zenwatch_skin_height">400dp</dimen>
+    <dimen name="zenwatch_skin_margin_left">47dp</dimen>
+    <dimen name="zenwatch_skin_margin_top">102dp</dimen>
+    <integer name="zenwatch_skin_PPI">278</integer>
+
+    <!-- Sony smart watch 3 skin -->
+    <dimen name="sony_container_size">160dp</dimen>
+    <dimen name="sony_skin_width">260dp</dimen>
+    <dimen name="sony_skin_height">380dp</dimen>
+    <dimen name="sony_skin_margin_left">50dp</dimen>
+    <dimen name="sony_skin_margin_top">95dp</dimen>
+    <integer name="sony_skin_PPI">283</integer>
+
+    <!-- LG G Watch skin -->
+    <dimen name="lgw_container_size">140dp</dimen>
+    <dimen name="lgw_skin_width">250dp</dimen>
+    <dimen name="lgw_skin_height">335dp</dimen>
+    <dimen name="lgw_skin_margin_left">55dp</dimen>
+    <dimen name="lgw_skin_margin_top">91dp</dimen>
+    <integer name="lgw_skin_PPI">240</integer>
+
 </resources>

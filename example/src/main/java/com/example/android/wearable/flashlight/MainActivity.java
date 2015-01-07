@@ -80,21 +80,13 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.skins_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.skin_lgwr:
-                wearMockLayout.setSkin(0);
-                return true;
-            case R.id.skin_moto360:
-                wearMockLayout.setSkin(1);
-                return true;
-        }
-        return false;
+        return wearMockLayout.setSkinByMenuItem(item);
     }
 
 
