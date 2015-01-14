@@ -12,5 +12,10 @@
         
     </declare-styleable>
     
-    
+    <!--
+    <declare-styleable name="WearMockViewStub">
+        <attr name="rectLayout" format="reference"/>
+        <attr name="roundLayout" format="reference"/>
+    </declare-styleable>
+    -->
 </resources>

@@ -3,6 +3,8 @@ package com.foxxymobile.wearmock;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -32,6 +34,8 @@ public class WearMockLayout extends FrameLayout {
     private int skinHeight;
     private int skinMarginLeft;
     private int skinMarginTop;
+    
+    private Drawable marginDrawable;
 
     public WearMockLayout(Context context) {
         super(context);
@@ -63,6 +67,8 @@ public class WearMockLayout extends FrameLayout {
         setSkin(SkinType.values()[curSkinIndex]);
 
         setWillNotDraw(false);
+        
+        marginDrawable = new ColorDrawable(Color.WHITE);
     }
 
     /**
@@ -142,6 +148,7 @@ public class WearMockLayout extends FrameLayout {
         }
       
         invalidate();
+        requestLayout();
     }
 
     /**
@@ -203,6 +210,16 @@ public class WearMockLayout extends FrameLayout {
         // Draw skin above the container
         faceDrawable.setBounds(skinLeft,skinTop,skinLeft+skinWidth,skinTop+skinHeight);
         faceDrawable.draw(canvas);
+
+        // Draw white margins
+        marginDrawable.setBounds(0, 0, getWidth(), skinTop);
+        marginDrawable.draw(canvas);
+        marginDrawable.setBounds(0, skinTop + skinHeight, getWidth(), getHeight());
+        marginDrawable.draw(canvas);
+        marginDrawable.setBounds(0, skinTop, skinLeft, skinTop+skinHeight);
+        marginDrawable.draw(canvas);
+        marginDrawable.setBounds(skinLeft+skinWidth, skinTop, getWidth(), skinTop+skinHeight);
+        marginDrawable.draw(canvas);
     }
 
 }

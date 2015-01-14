@@ -14,24 +14,12 @@
      limitations under the License.
 -->
 
-<com.foxxymobile.wearmock.WearMockLayout
+<android.support.v4.view.ViewPager
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/wearmock_layout"
+    android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    app:skin="LG_G_Watch_R"
-    >
-    
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000"
-        android:keepScreenOn="true"
-        />
-
-
-</com.foxxymobile.wearmock.WearMockLayout>
+    android:background="#000"
+    android:keepScreenOn="true"
+    />
 

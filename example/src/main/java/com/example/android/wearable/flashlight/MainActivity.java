@@ -16,7 +16,6 @@
 
 package com.example.android.wearable.flashlight;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.graphics.Color;
@@ -25,22 +24,18 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.foxxymobile.wearmock.WearMockLayout;
+import com.foxxymobile.wearmock.WearMockActivity;
 
 import java.util.ArrayList;
 
 /**
  * Let there be light.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends WearMockActivity {
 
-    private WearMockLayout wearMockLayout;
     private ViewPager mViewPager;
 
     @Override
@@ -49,8 +44,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.main);
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        wearMockLayout = (WearMockLayout) findViewById(R.id.wearmock_layout);
-        
+
         final LightFragmentAdapter adapter = new LightFragmentAdapter(getFragmentManager());
         adapter.addFragment(new WhiteLightFragment());
         final PartyLightFragment partyFragment = new PartyLightFragment();
@@ -75,18 +69,6 @@ public class MainActivity extends Activity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.skins_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return wearMockLayout.setSkinByMenuItem(item);
     }
 
 
