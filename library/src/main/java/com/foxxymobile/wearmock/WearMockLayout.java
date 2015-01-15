@@ -1,6 +1,7 @@
 package com.foxxymobile.wearmock;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,6 +19,9 @@ import android.widget.FrameLayout;
  * 
  */
 public class WearMockLayout extends FrameLayout {
+
+    private static final String PREFS_NAME = "wearMockLayoutPrefs";
+    private static final String SKIN_PREF = "skinOrdinalPref";
 
     public enum SkinType {
         LG_G_WATCH_R,
@@ -53,18 +57,20 @@ public class WearMockLayout extends FrameLayout {
     }
 
     public void init(AttributeSet attrs) {
-        int curSkinIndex = 0;
+        // Get the last used skin ordinal from SharedPreferences
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int curSkinOrdinal = prefs.getInt(SKIN_PREF,0);
         
         if(attrs!=null) {
             TypedArray ta = getContext().getTheme().obtainStyledAttributes(attrs,R.styleable.WearMockLayout,0, 0);
             try {
-                curSkinIndex = ta.getInteger(R.styleable.WearMockLayout_skin,0);
+                curSkinOrdinal = ta.getInteger(R.styleable.WearMockLayout_skin,0);
             } finally {
                 ta.recycle();
             }
         }
         
-        setSkin(SkinType.values()[curSkinIndex]);
+        setSkin(SkinType.values()[curSkinOrdinal]);
 
         setWillNotDraw(false);
         
@@ -149,6 +155,10 @@ public class WearMockLayout extends FrameLayout {
       
         invalidate();
         requestLayout();
+
+        // Store the selected skin in SharedPreferences
+        SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        prefs.edit().putInt(SKIN_PREF,skin.ordinal()).commit();
     }
 
     /**
