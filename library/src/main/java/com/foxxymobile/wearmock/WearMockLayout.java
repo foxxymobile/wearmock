@@ -5,13 +5,22 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.wearable.view.WatchViewStub;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
+
+import java.lang.reflect.Constructor;
 
 /**
  * Layout class for the WearMockLayout
@@ -38,8 +47,11 @@ public class WearMockLayout extends FrameLayout {
     private int skinHeight;
     private int skinMarginLeft;
     private int skinMarginTop;
+    private boolean isRound;
     
     private Drawable marginDrawable;
+
+    private WatchViewStub watchViewStub;
 
     public WearMockLayout(Context context) {
         super(context);
@@ -98,6 +110,7 @@ public class WearMockLayout extends FrameLayout {
                 skinHeight = (int) (getResources().getDimensionPixelSize(R.dimen.lgwr_skin_height)*ppiFactor);
                 skinMarginLeft = (int) (getResources().getDimensionPixelSize(R.dimen.lgwr_skin_margin_left)*ppiFactor);
                 skinMarginTop = (int) (getResources().getDimensionPixelSize(R.dimen.lgwr_skin_margin_top)*ppiFactor);
+                isRound = getResources().getBoolean(R.bool.lgwr_is_round);
 
                 faceDrawable = getResources().getDrawable(R.drawable.lgwr_skin);
                 break;
@@ -108,6 +121,7 @@ public class WearMockLayout extends FrameLayout {
                 skinHeight = (int) (getResources().getDimensionPixelSize(R.dimen.moto360_skin_height)*ppiFactor);
                 skinMarginLeft = (int) (getResources().getDimensionPixelSize(R.dimen.moto360_skin_margin_left)*ppiFactor);
                 skinMarginTop = (int) (getResources().getDimensionPixelSize(R.dimen.moto360_skin_margin_top)*ppiFactor);
+                isRound = getResources().getBoolean(R.bool.moto360_is_round);
 
                 faceDrawable = getResources().getDrawable(R.drawable.moto360_skin);    
                 break;
@@ -118,6 +132,7 @@ public class WearMockLayout extends FrameLayout {
                 skinHeight = (int) (getResources().getDimensionPixelSize(R.dimen.gear_skin_height)*ppiFactor);
                 skinMarginLeft = (int) (getResources().getDimensionPixelSize(R.dimen.gear_skin_margin_left)*ppiFactor);
                 skinMarginTop = (int) (getResources().getDimensionPixelSize(R.dimen.gear_skin_margin_top)*ppiFactor);
+                isRound = getResources().getBoolean(R.bool.gear_is_round);
 
                 faceDrawable = getResources().getDrawable(R.drawable.gear_skin);
                 break;
@@ -128,6 +143,7 @@ public class WearMockLayout extends FrameLayout {
                 skinHeight = (int) (getResources().getDimensionPixelSize(R.dimen.zenwatch_skin_height)*ppiFactor);
                 skinMarginLeft = (int) (getResources().getDimensionPixelSize(R.dimen.zenwatch_skin_margin_left)*ppiFactor);
                 skinMarginTop = (int) (getResources().getDimensionPixelSize(R.dimen.zenwatch_skin_margin_top)*ppiFactor);
+                isRound = getResources().getBoolean(R.bool.zenwatch_is_round);
 
                 faceDrawable = getResources().getDrawable(R.drawable.zenwatch_skin);
                 break;
@@ -138,6 +154,7 @@ public class WearMockLayout extends FrameLayout {
                 skinHeight = (int) (getResources().getDimensionPixelSize(R.dimen.sony_skin_height)*ppiFactor);
                 skinMarginLeft = (int) (getResources().getDimensionPixelSize(R.dimen.sony_skin_margin_left)*ppiFactor);
                 skinMarginTop = (int) (getResources().getDimensionPixelSize(R.dimen.sony_skin_margin_top)*ppiFactor);
+                isRound = getResources().getBoolean(R.bool.sony_is_round);
 
                 faceDrawable = getResources().getDrawable(R.drawable.sony_skin);
                 break;
@@ -148,17 +165,41 @@ public class WearMockLayout extends FrameLayout {
                 skinHeight = (int) (getResources().getDimensionPixelSize(R.dimen.lgw_skin_height)*ppiFactor);
                 skinMarginLeft = (int) (getResources().getDimensionPixelSize(R.dimen.lgw_skin_margin_left)*ppiFactor);
                 skinMarginTop = (int) (getResources().getDimensionPixelSize(R.dimen.lgw_skin_margin_top)*ppiFactor);
+                isRound = getResources().getBoolean(R.bool.lgw_is_round);
 
                 faceDrawable = getResources().getDrawable(R.drawable.lgw_skin);
                 break;
         }
-      
+
+
+        updateWatchViewStub();
+
         invalidate();
         requestLayout();
 
         // Store the selected skin in SharedPreferences
         SharedPreferences prefs = getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         prefs.edit().putInt(SKIN_PREF,skin.ordinal()).commit();
+    }
+
+    /**
+     *  If watchViewStub exist, update it according to skin's isRound flag
+     */
+    private void updateWatchViewStub() {
+        if(watchViewStub!=null) {
+            try {
+                // WatchViewStub determines which layout to use by looking at the WindowInset object.
+                // Since WindowInset is final, a synthetic instance is created using reflection and the isRound param
+                // is determined by the current selected skin
+                Constructor<WindowInsets> constructor =  WindowInsets.class.getConstructor(Rect.class,Rect.class,Rect.class,Boolean.TYPE);
+                Rect rect = new Rect(0,0,0,0);
+                WindowInsets wi = constructor.newInstance(rect,rect,rect,isRound);
+
+                watchViewStub.onApplyWindowInsets(wi);
+            } catch (Exception e) {
+                Log.e("WearMockLayout", "Cannot create WindowInset for stub", e);
+            }
+        }
     }
 
     /**
@@ -232,4 +273,40 @@ public class WearMockLayout extends FrameLayout {
         marginDrawable.draw(canvas);
     }
 
+    @Override
+    public void addView(View child) {
+        super.addView(child);
+
+        watchViewStub = findStub(child);
+
+        // Update the watch view stub
+        // Must be posted on the message queue so it will be run after layout has finished
+        Handler handler  = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                updateWatchViewStub();
+            }
+        });
+
+    }
+
+    /**
+     * Recursively search for a WatchViewStub view
+     */
+    private WatchViewStub findStub(View root) {
+        if(root instanceof ViewGroup) {
+            ViewGroup parent = (ViewGroup) root;
+            int childCount = parent.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View child = parent.getChildAt(i);
+                if(child instanceof WatchViewStub)
+                    return (WatchViewStub) child;
+                else if (child instanceof ViewGroup) {
+                    return findStub(child);
+                }
+            }
+        }
+        return null;
+    }
 }
