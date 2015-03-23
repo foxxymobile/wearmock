@@ -277,7 +277,10 @@ public class WearMockLayout extends FrameLayout {
     public void addView(View child) {
         super.addView(child);
 
-        watchViewStub = findStub(child);
+        if(child instanceof WatchViewStub)
+            watchViewStub = (WatchViewStub) child;
+        else
+            watchViewStub = findStub(child);
 
         // Update the watch view stub
         // Must be posted on the message queue so it will be run after layout has finished
